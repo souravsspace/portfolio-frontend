@@ -1,20 +1,35 @@
 "use client";
 
-import Image from "next/image";
-import { motion } from "framer-motion";
 import Link from "next/link";
-
+import Image from "next/image";
+import { useEffect } from "react";
+import { motion } from "framer-motion";
 import { CgArrowRight } from "react-icons/cg";
 import { LuDownload } from "react-icons/lu";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 import Wrapper from "@/components/ui/wrapper";
+import { useInView } from "react-intersection-observer";
 import { buttonVariants } from "@/components/ui/button";
+import { useActiveSectionContext } from "@/context/active-section-context";
 
 export default function Intro() {
+  const { ref, inView } = useInView({
+    threshold: 0.5,
+  });
+  const { setActiveSection } = useActiveSectionContext();
+
+  useEffect(() => {
+    if (inView) setActiveSection("Home");
+  }, [inView]);
+
   return (
     <Wrapper>
-      <section className="flex flex-col items-center justify-center">
+      <section
+        ref={ref}
+        className="mt-20 flex scroll-m-32 flex-col items-center justify-center sm:mt-0"
+        id="home"
+      >
         <div className="flex items-center justify-center">
           <div className="relative">
             <motion.div
@@ -54,9 +69,9 @@ export default function Intro() {
             animate={{ opacity: 1, y: 0 }}
             className="text-2xl font-medium leading-6 sm:text-4xl"
           >
-            <span className="font-bold">Hello, I&apos;m Ricardo.</span> I&apos;m
+            <span className="font-bold">Hello, I&apos;m Sourav.</span> I&apos;m
             a <span className="font-bold">full-stack developer</span> with{" "}
-            <span className="font-bold">8 years</span> of experience. I enjoy
+            <span className="font-bold">1 years</span> of experience. I enjoy
             building <span className="italic">sites & apps</span>. My focus is{" "}
             <span className="underline">React (Next.js)</span>.
           </motion.h2>

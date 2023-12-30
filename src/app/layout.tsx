@@ -1,6 +1,8 @@
-import Navbar from "@/components/navbar";
 import "@/styles/globals.css";
 import { Inter } from "next/font/google";
+
+import Navbar from "@/components/navbar";
+import ActiveSectionContextProvider from "@/context/active-section-context";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -20,15 +22,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body
-        className={`relative bg-gray-50 p-28 font-sans text-gray-950 sm:p-32 ${inter.variable}`}
-      >
-        <div className="absolute right-[10rem] top-[-4rem] -z-10 h-[31.25rem] w-[31.25rem] rounded-full bg-[#fbe2e3] blur-[10rem] md:right-[-15rem] md:h-[40rem] md:w-[40rem]" />
-        <div className="absolute left-[10rem] top-[-1rem] -z-10 h-[31.25rem] w-[31.25rem] rounded-full bg-[#dbd7fb] blur-[10rem] md:left-[-15rem] md:h-[40rem] md:w-[40rem]" />
+      <ActiveSectionContextProvider>
+        <body
+          className={`relative bg-gray-50 p-2 font-sans text-gray-950 sm:p-20 md:p-32 ${inter.variable}`}
+        >
+          <div className="absolute right-[11rem] top-[-6rem] -z-10 h-[31.25rem] w-[31.25rem] rounded-full bg-[#fbe2e3] blur-[10rem] sm:w-[68.75rem] dark:bg-[#946263]" />
+          <div className="absolute left-[-35rem] top-[-1rem] -z-10 h-[31.25rem] w-[50rem] rounded-full bg-[#dbd7fb] blur-[10rem] sm:w-[68.75rem] md:left-[-33rem] lg:left-[-28rem] xl:left-[-15rem] 2xl:left-[-5rem] dark:bg-[#676394]" />
 
-        <Navbar />
-        {children}
-      </body>
+          <Navbar />
+          {children}
+        </body>
+      </ActiveSectionContextProvider>
     </html>
   );
 }
