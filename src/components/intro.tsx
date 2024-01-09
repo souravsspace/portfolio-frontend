@@ -2,26 +2,17 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { CgArrowRight } from "react-icons/cg";
 import { LuDownload } from "react-icons/lu";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 import Wrapper from "@/components/ui/wrapper";
-import { useInView } from "react-intersection-observer";
 import { buttonVariants } from "@/components/ui/button";
-import { useActiveSectionContext } from "@/context/active-section-context";
+import useSectionInView from "@/hooks/useSectionInView";
 
 export default function Intro() {
-  const { ref, inView } = useInView({
-    threshold: 0.5,
-  });
-  const { setActiveSection } = useActiveSectionContext();
-
-  useEffect(() => {
-    if (inView) setActiveSection("Home");
-  }, [inView]);
+  const { ref } = useSectionInView("Home", 0.5);
 
   return (
     <Wrapper>

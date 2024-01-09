@@ -1,22 +1,13 @@
 "use client";
 
 import Wrapper from "@/components/ui/wrapper";
+import useSectionInView from "@/hooks/useSectionInView";
 import SectionHeading from "@/components/ui/section-heading";
 
 import { motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
-import { useActiveSectionContext } from "@/context/active-section-context";
-import { useEffect } from "react";
 
 export default function About() {
-  const { ref, inView } = useInView({
-    threshold: 0.75,
-  });
-  const { setActiveSection } = useActiveSectionContext();
-
-  useEffect(() => {
-    if (inView) setActiveSection("About");
-  }, [inView]);
+  const { ref } = useSectionInView("About");
 
   return (
     <Wrapper>

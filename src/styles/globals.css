@@ -8,6 +8,10 @@ body,
   scroll-behavior: smooth;
 }
 
+html {
+  --line-color: "#e5e7eb";
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

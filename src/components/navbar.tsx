@@ -8,7 +8,8 @@ import { links } from "@/constant";
 import { useActiveSectionContext } from "@/context/active-section-context";
 
 export default function Navbar() {
-  const { activeSection, setActiveSection } = useActiveSectionContext();
+  const { activeSection, setActiveSection, setTimeOfListClick } =
+    useActiveSectionContext();
 
   return (
     <nav className="relative z-50 overflow-hidden">
@@ -28,7 +29,10 @@ export default function Navbar() {
               className="relative flex h-3/4 items-center justify-center"
             >
               <Link
-                onClick={() => setActiveSection(link.name)}
+                onClick={() => {
+                  setActiveSection(link.name);
+                  setTimeOfListClick(Date.now());
+                }}
                 className={cn(
                   "p-2.5 px-3 py-3 transition hover:text-gray-950 dark:text-gray-500 dark:hover:text-gray-300",
                   {
