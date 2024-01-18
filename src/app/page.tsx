@@ -1,9 +1,12 @@
-import About from "@/components/about";
-import Experience from "@/components/experience";
-import Intro from "@/components/intro";
-import Projects from "@/components/projects";
-import Skills from "@/components/skills";
-
+import {
+  Intro,
+  About,
+  Projects,
+  Skills,
+  Experience,
+  Contact,
+  Footer,
+} from "@/components";
 import SectionDevider from "@/components/ui/section-devider";
 
 export default function Home() {
@@ -16,6 +19,8 @@ export default function Home() {
       <Projects />
       <Skills />
       <Experience />
+      <Contact />
+      <Footer />
     </main>
   );
 }
