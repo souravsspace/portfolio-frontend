@@ -14,7 +14,9 @@ import { FormSchema, type FormSchemaType } from "@/types";
 import { Textarea } from "@/components/ui/textarea";
 import sendEmail from "@/action/send-email";
 import toast from "react-hot-toast";
-import SubmitButton from "@/components/submit-button";
+import { buttonVariants } from "@/components/ui/button";
+import { FaPaperPlane, FaSpinner } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 export default function ContactForm() {
   const form = useForm<FormSchemaType>({
@@ -41,6 +43,11 @@ export default function ContactForm() {
       form.reset();
     }
   };
+
+  const formState =
+    form.formState.isLoading ||
+    form.formState.isSubmitting ||
+    form.formState.isValidating;
 
   return (
     <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -81,7 +88,26 @@ export default function ContactForm() {
             )}
           />
 
-          <SubmitButton />
+          {/* <SubmitButton /> */}
+          <motion.button
+            whileTap={{ scale: 0.97 }}
+            whileHover={{ scale: 1.03 }}
+            className={buttonVariants()}
+            type="submit"
+            disabled={formState}
+          >
+            {formState ? (
+              <>
+                Sending Message
+                <FaSpinner className="ml-2 h-3.5 w-3.5 animate-spin" />
+              </>
+            ) : (
+              <>
+                Send Message
+                <FaPaperPlane className="ml-2 h-3.5 w-3.5" />
+              </>
+            )}
+          </motion.button>
         </div>
       </Form>
     </form>
