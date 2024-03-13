@@ -23,7 +23,7 @@ export default function Contact() {
         <p>
           Please contact me directly as{" "}
           <a href="mailto:souravsspace@gmail.com" className="underline">
-            example@gmail.com
+            dev@sourav.cloud
           </a>{" "}
           or though the form.
         </p>
